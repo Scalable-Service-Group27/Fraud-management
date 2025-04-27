@@ -21,6 +21,6 @@ public class TransactionRuleEngine {
                 return result;
             }
         }
-        return new TransactionResult(TransactionStatus.VALID, "All rules passed.");
+        return new TransactionResult(TransactionStatus.VALID, "All rules passed11.");
     }
 }

@@ -17,23 +17,29 @@ import static com.fraud_detection.Fraud_Management.Kafka.KafkaTopics.TRANSACTION
 @RequiredArgsConstructor
 public class TestController {
 
-    private final KafkaTemplate<String, Object> kafkaTemplate;
+    private final KafkaTemplate<String, TransactionDTO> kafkaTemplate; // Specify the type as TransactionDTO
 
-    public TestController(KafkaTemplate<String, Object> kafkaTemplate) {
+    // Constructor injection (spring will automatically inject the KafkaTemplate)
+    public TestController(KafkaTemplate<String, TransactionDTO> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
     @PostMapping("/send-txn")
     public ResponseEntity<String> sendMockTxn() {
+        // Create a mock transaction with all required fields
         TransactionDTO txn = new TransactionDTO(
-                UUID.randomUUID().toString(),
-                "ACC3002",
-                "ACC3001",
-                250000.0,
-                "withdrawal",
-                "2025-04-22T14:00:00"
+                UUID.randomUUID().toString(),       // transactionId
+                "withdrawal",                       // transactionType
+                "ACC3002",                          // accNoFrom
+                "ACC3001",                          // accNoTo
+                250000.0,                           // amount
+                "USD",                              // currency
+                "2025-04-22T14:00:00",              // timestamp
+                "credit_card"  ,
+                "him11"// sourceType
         );
 
+        // Send the transaction to Kafka
         kafkaTemplate.send(TRANSACTION_TOPIC, txn.getTransactionId(), txn);
         return ResponseEntity.ok("Sent test txn: " + txn.getTransactionId());
     }

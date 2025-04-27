@@ -1,23 +1,79 @@
 package com.fraud_detection.Fraud_Management.DTO;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class TransactionDTO {
+
+    @JsonCreator
+    public TransactionDTO(@JsonProperty("transactionId") String transactionId,
+                          @JsonProperty("transactionType") String transactionType,
+                          @JsonProperty("accNoFrom") String accNoFrom,
+                          @JsonProperty("accNoTo") String accNoTo,
+                          @JsonProperty("amount") double amount,
+                          @JsonProperty("currency") String currency,
+                          @JsonProperty("timestamp") String timestamp,
+                          @JsonProperty("sourceType") String sourceType,
+                          @JsonProperty("userId") String userId) {
+        this.transactionId = transactionId;
+        this.transactionType = transactionType;
+        this.accNoFrom = accNoFrom;
+        this.accNoTo = accNoTo;
+        this.amount = amount;
+        this.currency = currency;
+        this.timestamp = timestamp;
+        this.sourceType = sourceType;
+        this.userId=userId;
+
+    }
+
+//    public TransactionDTO(String transactionId, String transactionType, String sourceType, Double amount, String currency, String timestamp, String accNoFrom, String accNoTo,String userId) {
+//        this.transactionId = transactionId;
+//        this.transactionType = transactionType;
+//        this.sourceType = sourceType;
+//        this.amount = amount;
+//        this.currency = currency;
+//        this.timestamp = timestamp;
+//        this.accNoFrom = accNoFrom;
+//        this.accNoTo = accNoTo;
+//        this.userId= userId;
+//    }
+
+
+    @JsonProperty("transactionId")
     private String transactionId;
+
+    @JsonProperty("transactionType")
     private String transactionType; // transfer, deposit, withdrawal
+
+    @JsonProperty("sourceType")
     private String sourceType;      // debit_card, credit_card, bank
+
+    @JsonProperty("amount")
     private Double amount;
+
+    @JsonProperty("currency")
     private String currency;
+
+    @JsonProperty("timestamp")
     private String timestamp;
+
+    @JsonProperty("accNoFrom")
     private String accNoFrom;
+
+    @JsonProperty("accNoTo")
     private String accNoTo;
 
-    public TransactionDTO(String string, String acc3002, String acc3001, double v, String withdrawal, String s) {
+
+    @JsonProperty("userId")
+    private String userId;
+
+    // Default constructor for Jackson deserialization
+    public TransactionDTO() {
     }
 
     public String getTransactionId() {
@@ -83,4 +139,16 @@ public class TransactionDTO {
     public void setAccNoTo(String accNoTo) {
         this.accNoTo = accNoTo;
     }
+
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 }
+
+
+
