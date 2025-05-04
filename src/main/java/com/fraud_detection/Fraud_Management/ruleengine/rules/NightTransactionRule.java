@@ -15,7 +15,7 @@ public class NightTransactionRule implements TransactionRule {
 
     @Override
     public TransactionResult apply(TransactionDTO transaction) {
-        String timestampStr = transaction.getTimestamp();
+        String timestampStr = String.valueOf(transaction.getTimestamp());
 
         if (timestampStr == null || timestampStr.isEmpty()) {
             return new TransactionResult(TransactionStatus.VALID, "Timestamp is missing");

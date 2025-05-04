@@ -15,7 +15,7 @@ public class WeekendTransactionRule implements TransactionRule {
     @Override
     public TransactionResult apply(TransactionDTO txn) {
         try {
-            LocalDate date = LocalDate.parse(txn.getTimestamp().substring(0, 10));
+            LocalDate date = LocalDate.parse(String.valueOf( txn.getTimestamp()).substring(0, 10));
             DayOfWeek day = date.getDayOfWeek();
 
             if ((day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY) && txn.getAmount() > 50000) {

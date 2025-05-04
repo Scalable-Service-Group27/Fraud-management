@@ -20,7 +20,7 @@ public class RepeatedTransactionRule implements TransactionRule {
         if (recentTransactions.containsKey(key)) {
             return new TransactionResult(TransactionStatus.ALERT, "Repeated transaction in short span.");
         }
-        recentTransactions.put(key, txn.getTimestamp());
+        recentTransactions.put(key, String.valueOf(txn.getTimestamp()));
         return new TransactionResult(TransactionStatus.VALID, "No repetition.");
     }
 }

@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Table(name = "transaction_logs")
 @Data
 @Builder
-public class FraudAlertedTransactionLog {
+public class TransactionLog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,10 +18,10 @@ public class FraudAlertedTransactionLog {
     @Column(name="transaction_id")
     private String transactionId;
 
-    @Column(name="acccount_from")
+    @Column(name="account_from")
     private String accountFrom;
 
-    @Column(name="acccount_to")
+    @Column(name="account_to")
     private String accountTo;
 
     @Column(name="amount")
@@ -38,7 +38,7 @@ public class FraudAlertedTransactionLog {
     @Column(name="timestamp")
     private LocalDateTime timestamp;
 
-    public FraudAlertedTransactionLog(Long id, String transactionId, String accountFrom, String accountTo, Double amount, String transactionType, String status, String reason, LocalDateTime timestamp) {
+    public TransactionLog(Long id, String transactionId, String accountFrom, String accountTo, Double amount, String transactionType, String status, String reason, LocalDateTime timestamp) {
         this.id = id;
         this.transactionId = transactionId;
         this.accountFrom = accountFrom;
@@ -50,7 +50,7 @@ public class FraudAlertedTransactionLog {
         this.timestamp = timestamp;
     }
 
-    public FraudAlertedTransactionLog(){}
+    public TransactionLog(){}
 
     public Long getId() {
         return id;

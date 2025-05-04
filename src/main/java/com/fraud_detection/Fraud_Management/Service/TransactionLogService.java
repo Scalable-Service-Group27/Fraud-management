@@ -1,29 +1,28 @@
 package com.fraud_detection.Fraud_Management.service;
 
-import com.fraud_detection.Fraud_Management.entity.FraudAlertedTransactionLog;
-import com.fraud_detection.Fraud_Management.repository.FraudAlertedTransactionLogRepository;
-import lombok.RequiredArgsConstructor;
+import com.fraud_detection.Fraud_Management.entity.TransactionLog;
+import com.fraud_detection.Fraud_Management.repository.TransactionLogRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
 @Service
-public class FraudAlertedTransactionLogService {
+public class TransactionLogService {
 
-    private final FraudAlertedTransactionLogRepository transactionLogRepository;
+    private final TransactionLogRepository transactionLogRepository;
 
-    public FraudAlertedTransactionLogService(FraudAlertedTransactionLogRepository transactionLogRepository) {
+    public TransactionLogService(TransactionLogRepository transactionLogRepository) {
         this.transactionLogRepository = transactionLogRepository;
     }
 
-    public FraudAlertedTransactionLog saveTransactionLog(String transactionId,
+    public TransactionLog saveTransactionLog(String transactionId,
                                                          String accountFrom,
                                                          String accountTo,
                                                          Double amount,
                                                          String transactionType,
                                                          String status,
                                                          String reason) {
-        FraudAlertedTransactionLog log = new FraudAlertedTransactionLog();
+        TransactionLog log = new TransactionLog();
         log.setTransactionId(transactionId);
         log.setAccountFrom(accountFrom);
         log.setAccountTo(accountTo);
@@ -42,7 +41,7 @@ public class FraudAlertedTransactionLogService {
                                      String status, String reason) {
 
         // Create the Transaction Log entry
-        FraudAlertedTransactionLog transactionLog = new FraudAlertedTransactionLog();
+        TransactionLog transactionLog = new TransactionLog();
 
         transactionLog.setTransactionId(transactionId);
         transactionLog.setAccountFrom(accNoFrom);

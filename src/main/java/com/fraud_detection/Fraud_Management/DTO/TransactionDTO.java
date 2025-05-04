@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 public class TransactionDTO {
 
@@ -16,7 +18,7 @@ public class TransactionDTO {
                           @JsonProperty("accNoTo") String accNoTo,
                           @JsonProperty("amount") double amount,
                           @JsonProperty("currency") String currency,
-                          @JsonProperty("timestamp") String timestamp,
+                          @JsonProperty("timestamp") LocalDateTime timestamp,
                           @JsonProperty("sourceType") String sourceType,
                           @JsonProperty("userId") String userId) {
         this.transactionId = transactionId;
@@ -60,7 +62,7 @@ public class TransactionDTO {
     private String currency;
 
     @JsonProperty("timestamp")
-    private String timestamp;
+    private LocalDateTime timestamp;
 
     @JsonProperty("accNoFrom")
     private String accNoFrom;
@@ -116,11 +118,11 @@ public class TransactionDTO {
         this.currency = currency;
     }
 
-    public String getTimestamp() {
+    public LocalDateTime getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
+    public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
     }
 

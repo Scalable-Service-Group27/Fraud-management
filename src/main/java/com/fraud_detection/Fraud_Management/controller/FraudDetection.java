@@ -3,9 +3,7 @@ package com.fraud_detection.Fraud_Management.controller;
 import com.fraud_detection.Fraud_Management.DTO.TransactionDTO;
 import com.fraud_detection.Fraud_Management.Kafka.TransactionProducer;
 import com.fraud_detection.Fraud_Management.ruleengine.TransactionResult;
-import com.fraud_detection.Fraud_Management.service.FraudAlertedTransactionLogService;
 import com.fraud_detection.Fraud_Management.Service.FraudAlertService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,10 +11,10 @@ import org.springframework.web.bind.annotation.*;
 public class FraudDetection {
 
     private final TransactionProducer transactionProducer;
-    private final FraudAlertedTransactionLogService transactionLogService;
+    private final com.fraud_detection.Fraud_Management.service.TransactionLogService transactionLogService;
     private final FraudAlertService fraudAlertService;
 
-    public FraudDetection(TransactionProducer transactionProducer, FraudAlertedTransactionLogService transactionLogService, FraudAlertService fraudAlertService) {
+    public FraudDetection(TransactionProducer transactionProducer, com.fraud_detection.Fraud_Management.service.TransactionLogService transactionLogService, FraudAlertService fraudAlertService) {
         this.transactionProducer = transactionProducer;
         this.transactionLogService = transactionLogService;
         this.fraudAlertService = fraudAlertService;
