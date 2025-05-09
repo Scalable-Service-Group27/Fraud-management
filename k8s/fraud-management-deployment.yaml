@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fraud-management-deployment
+  labels:
+    app: fraud-management
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fraud-management
+  template:
+    metadata:
+      labels:
+        app: fraud-management
+    spec:
+      containers:
+        - name: fraud-management-container
+          image: your-dockerhub-username/fraud-management-service:1.0.0
+          ports:
+            - containerPort: 8081
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql-service:3306/your_database
+            - name: SPRING_DATASOURCE_USERNAME
+              value: your_db_user
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: your_db_password
+            - name: SPRING_PROFILES_ACTIVE
+              value: default
